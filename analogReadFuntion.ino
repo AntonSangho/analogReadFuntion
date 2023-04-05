@@ -1,4 +1,5 @@
 int sens;
+int ledPin = 6;
 int sensorPin = A0;
 
 int ReadSens_and_Condition(){
@@ -15,6 +16,14 @@ int ReadSens_and_Condition(){
   return sval;
 }
 
+void blink()
+{
+  digitalWrite(ledPin, HIGH);
+  delay(100);
+  digitalWrite(ledPin, LOW);
+  delay(100);
+}
+
 void setup(){
   Serial.begin(9600);
 }
@@ -22,6 +31,8 @@ void setup(){
 void loop(){
   sens = ReadSens_and_Condition();
   Serial.println(sens);
+  analogWrite(ledPin, sens); //아날로그 값으로 밝기 변화
+  
 }
 
 
